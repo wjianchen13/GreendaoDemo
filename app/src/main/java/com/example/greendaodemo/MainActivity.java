@@ -32,19 +32,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onInsert(View v) {
-        EventUtils.isUploadEventExcludeDevice("111", 2222, "测试1");
+        EventUtils.isUploadEventExcludeDevice("111", "2222", "测试1");
     }
 
     public void onDelete(View v) {
-        EventUtils.isUploadEventExcludeDevice("111", 2222, "测试1");
+        EventUtils.isUploadEventExcludeDevice("111", "2222", "测试1");
     }
 
     public void onUpdate(View v) {
-        EventUtils.isUploadEventExcludeDevice("112", 2222, "测试1");
+        EventUtils.isUploadEventExcludeDevice("112", "2222", "测试1");
     }
 
     public void onQuery(View v) {
-        EventUtils.isUploadEventExcludeDevice("111", 2223, "测试1");
+        EventUtils.isUploadEventExcludeDevice("111", "2223", "测试1");
     }
 
     public void onQueryAll(View v) {

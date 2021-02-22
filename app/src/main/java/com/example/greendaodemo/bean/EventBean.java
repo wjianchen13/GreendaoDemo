@@ -17,7 +17,7 @@ public class EventBean {
     /**
      * 事件id
      */
-    private int eventId;
+    private String eventId;
 
     /**
      * 设备号
@@ -42,8 +42,8 @@ public class EventBean {
     @Generated(hash = 519173234)
     private transient EventBeanDao myDao;
 
-    @Generated(hash = 1734550170)
-    public EventBean(int uId, int eventId, String imei, long ctime,
+    @Generated(hash = 281372946)
+    public EventBean(int uId, String eventId, String imei, long ctime,
             String eventDesc) {
         this.uId = uId;
         this.eventId = eventId;
@@ -64,11 +64,11 @@ public class EventBean {
         this.uId = uId;
     }
 
-    public int getEventId() {
+    public String getEventId() {
         return this.eventId;
     }
 
-    public void setEventId(int eventId) {
+    public void setEventId(String eventId) {
         this.eventId = eventId;
     }
 
@@ -138,7 +138,5 @@ public class EventBean {
         this.daoSession = daoSession;
         myDao = daoSession != null ? daoSession.getEventBeanDao() : null;
     }
-
-
     
 }

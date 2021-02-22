@@ -10,7 +10,7 @@ public class EventUtils {
      * 如果不存在UID，则插入，返回true
      * @return
      */
-    public static boolean isUploadEventExcludeUid(int uid, int eventId, String desc) {
+    public static boolean isUploadEventExcludeUid(int uid, String eventId, String desc) {
         if(!isExit(uid, eventId)) {
             EventBean bean = new EventBean(uid, eventId, "", System.currentTimeMillis(), desc);
             EventBeanTable.getInstance().save(bean);
@@ -24,7 +24,7 @@ public class EventUtils {
      * 如果不存在imei，则插入，返回true
      * @return
      */
-    public static boolean isUploadEventExcludeDevice(String imei, int eventId, String desc) {
+    public static boolean isUploadEventExcludeDevice(String imei, String eventId, String desc) {
         if(!isExit(imei, eventId)) {
             EventBean bean = new EventBean(0, eventId, imei, System.currentTimeMillis(), desc);
             EventBeanTable.getInstance().save(bean);
@@ -33,11 +33,11 @@ public class EventUtils {
         return false;
     }
     
-    public static boolean isExit(int uid, int eventId) {
+    public static boolean isExit(int uid, String eventId) {
         return EventBeanTable.getInstance().isExit(uid, eventId);   
     }
 
-    public static boolean isExit(String imei, int eventId) {
+    public static boolean isExit(String imei, String eventId) {
         return EventBeanTable.getInstance().isExit(imei, eventId);
     }
     

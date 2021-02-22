@@ -25,7 +25,7 @@ public class EventBeanTable {
 
     private EventBeanDao eventDao;
     
-    public boolean isExit(int uid, int eventId) {
+    public boolean isExit(int uid, String eventId) {
         if(eventDao != null) {
             QueryBuilder<EventBean> builder = eventDao
                     .queryBuilder()
@@ -36,7 +36,7 @@ public class EventBeanTable {
         return false;
     }
 
-    public boolean isExit(String imei, int eventId) {
+    public boolean isExit(String imei, String eventId) {
         if(eventDao != null) {
             QueryBuilder<EventBean> builder = eventDao
                     .queryBuilder()

@@ -25,7 +25,7 @@ public class EventBeanDao extends AbstractDao<EventBean, Void> {
      */
     public static class Properties {
         public final static Property UId = new Property(0, int.class, "uId", false, "U_ID");
-        public final static Property EventId = new Property(1, int.class, "eventId", false, "EVENT_ID");
+        public final static Property EventId = new Property(1, String.class, "eventId", false, "EVENT_ID");
         public final static Property Imei = new Property(2, String.class, "imei", false, "IMEI");
         public final static Property Ctime = new Property(3, long.class, "ctime", false, "CTIME");
         public final static Property EventDesc = new Property(4, String.class, "eventDesc", false, "EVENT_DESC");
@@ -48,7 +48,7 @@ public class EventBeanDao extends AbstractDao<EventBean, Void> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"db_event_table\" (" + //
                 "\"U_ID\" INTEGER NOT NULL ," + // 0: uId
-                "\"EVENT_ID\" INTEGER NOT NULL ," + // 1: eventId
+                "\"EVENT_ID\" TEXT," + // 1: eventId
                 "\"IMEI\" TEXT," + // 2: imei
                 "\"CTIME\" INTEGER NOT NULL ," + // 3: ctime
                 "\"EVENT_DESC\" TEXT);"); // 4: eventDesc
@@ -64,7 +64,11 @@ public class EventBeanDao extends AbstractDao<EventBean, Void> {
     protected final void bindValues(DatabaseStatement stmt, EventBean entity) {
         stmt.clearBindings();
         stmt.bindLong(1, entity.getUId());
-        stmt.bindLong(2, entity.getEventId());
+ 
+        String eventId = entity.getEventId();
+        if (eventId != null) {
+            stmt.bindString(2, eventId);
+        }
  
         String imei = entity.getImei();
         if (imei != null) {
@@ -82,7 +86,11 @@ public class EventBeanDao extends AbstractDao<EventBean, Void> {
     protected final void bindValues(SQLiteStatement stmt, EventBean entity) {
         stmt.clearBindings();
         stmt.bindLong(1, entity.getUId());
-        stmt.bindLong(2, entity.getEventId());
+ 
+        String eventId = entity.getEventId();
+        if (eventId != null) {
+            stmt.bindString(2, eventId);
+        }
  
         String imei = entity.getImei();
         if (imei != null) {
@@ -111,7 +119,7 @@ public class EventBeanDao extends AbstractDao<EventBean, Void> {
     public EventBean readEntity(Cursor cursor, int offset) {
         EventBean entity = new EventBean( //
             cursor.getInt(offset + 0), // uId
-            cursor.getInt(offset + 1), // eventId
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // eventId
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // imei
             cursor.getLong(offset + 3), // ctime
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4) // eventDesc
@@ -122,7 +130,7 @@ public class EventBeanDao extends AbstractDao<EventBean, Void> {
     @Override
     public void readEntity(Cursor cursor, EventBean entity, int offset) {
         entity.setUId(cursor.getInt(offset + 0));
-        entity.setEventId(cursor.getInt(offset + 1));
+        entity.setEventId(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setImei(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
         entity.setCtime(cursor.getLong(offset + 3));
         entity.setEventDesc(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
