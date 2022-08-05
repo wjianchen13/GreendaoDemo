@@ -35,7 +35,7 @@ public class StudentBeanTable {
         studentDao.insertOrReplace(student);
     }
 
-    public List<StudentBean> queryAll() {
+    public List<StudentBean> loadAll() {
         return studentDao.loadAll();
     }
 

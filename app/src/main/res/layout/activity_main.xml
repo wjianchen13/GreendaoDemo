@@ -7,81 +7,29 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/btn_insert"
+        android:id="@+id/btn_student"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="insert"
+        android:text="Student"
         android:gravity="center"
         android:textAllCaps="false"
-        android:onClick="onInsert"
+        android:onClick="onStudent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" 
         app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
-        android:id="@+id/btn_delete"
+        android:id="@+id/btn_event"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="delete"
+        android:text="Event"
         android:gravity="center"
         android:textAllCaps="false"
-        android:onClick="onDelete"
+        android:onClick="onEvent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_insert"/>
-
-    <Button
-        android:id="@+id/btn_update"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="update"
-        android:gravity="center"
-        android:textAllCaps="false"
-        android:onClick="onUpdate"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_delete"/>
-
-    <Button
-        android:id="@+id/btn_query"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="query"
-        android:gravity="center"
-        android:textAllCaps="false"
-        android:onClick="onQuery"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_update"/>
-    
-    <Button
-        android:id="@+id/btn_query_all"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="query all"
-        android:gravity="center"
-        android:textAllCaps="false"
-        android:onClick="onQueryAll"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_query"/>
-
-    <Button
-        android:id="@+id/btn_copy"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="copy"
-        android:gravity="center"
-        android:textAllCaps="false"
-        android:onClick="onCopy"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_query_all"/>
+        app:layout_constraintTop_toBottomOf="@+id/btn_student"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
