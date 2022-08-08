@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.greendaodemo.bean.EventBean;
 import com.example.greendaodemo.bean.StudentBean;
+import com.example.greendaodemo.manager.DaoManager;
 import com.example.greendaodemo.manager.EventUtils;
 import com.example.greendaodemo.manager.StudentUtils;
 import com.example.greendaodemo.table.EventBeanTable;
@@ -38,24 +39,47 @@ public class StudentActivity extends AppCompatActivity {
     public void onTest1(View v){
         List list = StudentUtils.queryAll();
         if(list != null) {
+            if(list.size() == 0)
+                log("数据为空");
             for (int i = 0; i < list.size(); i ++) {
                 log("index " + i + ": " + list.get(i).toString());
             }
         }
     }
+
+    /**
+     * 删除全部数据
+     * @param v
+     */
+    public void onTest2(View v) {
+        StudentUtils.deleteAll();
+    }
+
     /**
      * 插入一条数据
      * @param v
      */
-    public void onTest2(View v) {
-        StudentBean bean = new StudentBean(1, "test1", 11, "男");
+    public void onTest3(View v) {
+        StudentBean bean = new StudentBean((long) 1, 1, "test1", 11, "男");
         StudentUtils.insert(bean);
     }
 
+    /**
+     * 插入一条数据，使用DaoSession
+     * @param v
+     */
+    public void onTest4(View v) {
+        StudentBean bean = new StudentBean((long) 1, 1, "test1", 11, "男");
+        DaoManager.getInstance().getDaoSession().insert(bean);
+    }
 
-
-    public void onUpdate(View v) {
-        EventUtils.isUploadEventExcludeDevice("112", "2222", "测试1");
+    /**
+     * insertOrReplace
+     * @param v
+     */
+    public void onTest5(View v) {
+        StudentBean bean = new StudentBean((long) 3, 1, "test1", 11, "男");
+        StudentUtils.insertOrReplace(bean);
     }
 
     public void onQuery(View v) {

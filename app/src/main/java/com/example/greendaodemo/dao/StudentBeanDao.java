@@ -15,7 +15,7 @@ import com.example.greendaodemo.bean.StudentBean;
 /** 
  * DAO for table "STUDENT_BEAN".
 */
-public class StudentBeanDao extends AbstractDao<StudentBean, Void> {
+public class StudentBeanDao extends AbstractDao<StudentBean, Long> {
 
     public static final String TABLENAME = "STUDENT_BEAN";
 
@@ -24,10 +24,11 @@ public class StudentBeanDao extends AbstractDao<StudentBean, Void> {
      * Can be used for QueryBuilder and for referencing column names.
      */
     public static class Properties {
-        public final static Property Id = new Property(0, long.class, "id", false, "ID");
-        public final static Property Name = new Property(1, String.class, "name", false, "NAME");
-        public final static Property Age = new Property(2, int.class, "age", false, "AGE");
-        public final static Property Gender = new Property(3, String.class, "gender", false, "GENDER");
+        public final static Property _id = new Property(0, Long.class, "_id", true, "_id");
+        public final static Property Uid = new Property(1, long.class, "uid", false, "UID");
+        public final static Property Name = new Property(2, String.class, "name", false, "NAME");
+        public final static Property Age = new Property(3, int.class, "age", false, "AGE");
+        public final static Property Gender = new Property(4, String.class, "gender", false, "GENDER");
     }
 
 
@@ -43,10 +44,11 @@ public class StudentBeanDao extends AbstractDao<StudentBean, Void> {
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"STUDENT_BEAN\" (" + //
-                "\"ID\" INTEGER NOT NULL ," + // 0: id
-                "\"NAME\" TEXT," + // 1: name
-                "\"AGE\" INTEGER NOT NULL ," + // 2: age
-                "\"GENDER\" TEXT);"); // 3: gender
+                "\"_id\" INTEGER PRIMARY KEY ," + // 0: _id
+                "\"UID\" INTEGER NOT NULL ," + // 1: uid
+                "\"NAME\" TEXT," + // 2: name
+                "\"AGE\" INTEGER NOT NULL ," + // 3: age
+                "\"GENDER\" TEXT);"); // 4: gender
     }
 
     /** Drops the underlying database table. */
@@ -58,76 +60,91 @@ public class StudentBeanDao extends AbstractDao<StudentBean, Void> {
     @Override
     protected final void bindValues(DatabaseStatement stmt, StudentBean entity) {
         stmt.clearBindings();
-        stmt.bindLong(1, entity.getId());
+ 
+        Long _id = entity.get_id();
+        if (_id != null) {
+            stmt.bindLong(1, _id);
+        }
+        stmt.bindLong(2, entity.getUid());
  
         String name = entity.getName();
         if (name != null) {
-            stmt.bindString(2, name);
+            stmt.bindString(3, name);
         }
-        stmt.bindLong(3, entity.getAge());
+        stmt.bindLong(4, entity.getAge());
  
         String gender = entity.getGender();
         if (gender != null) {
-            stmt.bindString(4, gender);
+            stmt.bindString(5, gender);
         }
     }
 
     @Override
     protected final void bindValues(SQLiteStatement stmt, StudentBean entity) {
         stmt.clearBindings();
-        stmt.bindLong(1, entity.getId());
+ 
+        Long _id = entity.get_id();
+        if (_id != null) {
+            stmt.bindLong(1, _id);
+        }
+        stmt.bindLong(2, entity.getUid());
  
         String name = entity.getName();
         if (name != null) {
-            stmt.bindString(2, name);
+            stmt.bindString(3, name);
         }
-        stmt.bindLong(3, entity.getAge());
+        stmt.bindLong(4, entity.getAge());
  
         String gender = entity.getGender();
         if (gender != null) {
-            stmt.bindString(4, gender);
+            stmt.bindString(5, gender);
         }
     }
 
     @Override
-    public Void readKey(Cursor cursor, int offset) {
-        return null;
+    public Long readKey(Cursor cursor, int offset) {
+        return cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0);
     }    
 
     @Override
     public StudentBean readEntity(Cursor cursor, int offset) {
         StudentBean entity = new StudentBean( //
-            cursor.getLong(offset + 0), // id
-            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // name
-            cursor.getInt(offset + 2), // age
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3) // gender
+            cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // _id
+            cursor.getLong(offset + 1), // uid
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // name
+            cursor.getInt(offset + 3), // age
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4) // gender
         );
         return entity;
     }
      
     @Override
     public void readEntity(Cursor cursor, StudentBean entity, int offset) {
-        entity.setId(cursor.getLong(offset + 0));
-        entity.setName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setAge(cursor.getInt(offset + 2));
-        entity.setGender(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.set_id(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
+        entity.setUid(cursor.getLong(offset + 1));
+        entity.setName(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setAge(cursor.getInt(offset + 3));
+        entity.setGender(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
      }
     
     @Override
-    protected final Void updateKeyAfterInsert(StudentBean entity, long rowId) {
-        // Unsupported or missing PK type
-        return null;
+    protected final Long updateKeyAfterInsert(StudentBean entity, long rowId) {
+        entity.set_id(rowId);
+        return rowId;
     }
     
     @Override
-    public Void getKey(StudentBean entity) {
-        return null;
+    public Long getKey(StudentBean entity) {
+        if(entity != null) {
+            return entity.get_id();
+        } else {
+            return null;
+        }
     }
 
     @Override
     public boolean hasKey(StudentBean entity) {
-        // TODO
-        return false;
+        return entity.get_id() != null;
     }
 
     @Override

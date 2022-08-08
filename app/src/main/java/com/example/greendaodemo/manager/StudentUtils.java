@@ -17,12 +17,31 @@ public class StudentUtils {
     }
 
     /**
+     * 删除全部数据
+     * @return
+     */
+    public static void deleteAll() {
+        StudentBeanTable.getInstance().deleteAll();
+    }
+
+
+    /**
      * 插入一条数据
      * @return
      */
     public static void insert(StudentBean bean) {
         if(bean != null) {
             StudentBeanTable.getInstance().insert(bean);
+        }
+    }
+
+    /**
+     * insertOrReplace 数据存在则替换，数据不存在则插入
+     * @param bean
+     */
+    public static void insertOrReplace(StudentBean bean) {
+        if(bean != null) {
+            StudentBeanTable.getInstance().insertOrReplace(bean);
         }
     }
 

@@ -6,9 +6,17 @@ import com.example.greendaodemo.manager.DaoManager;
 
 import java.util.List;
 
+/**
+ * insert 插入一条数据  实体对象为参数
+ * insertInTx 批量插入数据  List<>型参数
+ * insertOrReplace 插入数据，传入的对象主键如果存在于数据库中，有则更新，否则插入  实体对象为参数
+ * insertOrReplaceInTx 批量插入数据 List<>型参数
+ * save 插入数据，判断对象是否有Key值，有则更新，否则插入  实体对象为参数
+ */
 public class StudentBeanTable {
 
     private static volatile StudentBeanTable table = null;
+    private StudentBeanDao studentDao;
 
     public static StudentBeanTable getInstance() {
         if(table == null) {
@@ -21,23 +29,27 @@ public class StudentBeanTable {
         return table;
     }
 
-    private StudentBeanDao studentDao;
-
     public StudentBeanTable() {
         studentDao = DaoManager.getInstance().getDaoSession().getStudentBeanDao();
-    }
-
-    public void insert(StudentBean student) {
-        studentDao.insert(student);
-    }
-    
-    public void insertOrReplace(StudentBean student) {
-        studentDao.insertOrReplace(student);
     }
 
     public List<StudentBean> loadAll() {
         return studentDao.loadAll();
     }
+
+    public void deleteAll() {
+        studentDao.deleteAll();
+    }
+
+    public void insert(StudentBean student) {
+        studentDao.insert(student);
+    }
+
+    public void insertOrReplace(StudentBean student) {
+        studentDao.insertOrReplace(student);
+//        studentDao.insertOrReplaceInTx();
+    }
+
 
 //    public StudentBean load(StudentBean student) {
 //        StudentBean students2 = studentDao.load(Void);
