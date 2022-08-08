@@ -37,7 +37,7 @@ public class StudentActivity extends AppCompatActivity {
      * @param v
      */
     public void onTest1(View v){
-        List list = StudentUtils.queryAll();
+        List list = StudentUtils.loadAll();
         if(list != null) {
             if(list.size() == 0)
                 log("数据为空");
@@ -69,7 +69,7 @@ public class StudentActivity extends AppCompatActivity {
      * @param v
      */
     public void onTest4(View v) {
-        StudentBean bean = new StudentBean((long) 1, 1, "test1", 11, "男");
+        StudentBean bean = new StudentBean((long) 2, 1, "test1", 11, "男");
         DaoManager.getInstance().getDaoSession().insert(bean);
     }
 
@@ -78,51 +78,47 @@ public class StudentActivity extends AppCompatActivity {
      * @param v
      */
     public void onTest5(View v) {
-        StudentBean bean = new StudentBean((long) 3, 1, "test1", 11, "男");
+        StudentBean bean = new StudentBean((long) 3, 2, "test1", 11, "男");
         StudentUtils.insertOrReplace(bean);
     }
 
-    public void onQuery(View v) {
-        EventUtils.isUploadEventExcludeDevice("111", "2223", "测试1");
+    /**
+     * save 类似于insertOrReplace，区别在于save会判断传入对象的key，有key的对象执行更新，无key的执行插入。当对象有key但并不在数据库时会执行失败.适用于保存本地列表。
+     * @param v
+     */
+    public void onTest6(View v) {
+        StudentBean bean = new StudentBean((long) 3, 1, "test11111111", 11, "男");
+        StudentUtils.save(bean);
     }
 
-    public void onQueryAll(View v) {
-        List<EventBean> events = EventBeanTable.getInstance().queryAll();
-        log("events size: " + (events != null ? events.size() : 0));
-        for(EventBean bean : events) {
-            log("uid: " + bean.getUId() + "  eventId: " + bean.getEventId() + "  imei: " + bean.getImei() + "  eventDesc: " + bean.getEventDesc() + "  time: " + sdf.format(new Date(bean.getCtime())));  
+    /**
+     * 根据主键删除某个数据
+     * @param v
+     */
+    public void onTest7(View v) {
+        StudentBean bean = new StudentBean((long) 3, 12, "test11111111", 113, "女");
+        StudentUtils.delete(bean);
+    }
+
+    /**
+     * 根据主键修改某个数据
+     * @param v
+     */
+    public void onTest8(View v) {
+        StudentBean bean = new StudentBean((long) 3, 12, "test11111111", 113, "女");
+        StudentUtils.update(bean);
+    }
+
+    /**
+     * 查询数据
+     * @param v
+     */
+    public void onTest9(View v) {
+        List<StudentBean> beans = StudentUtils.queryRaw("where uid = ?", "1");
+        for (int i = 0; i < beans.size(); i ++) {
+            log("index " + i + ": " + beans.get(i).toString());
         }
     }
-    
-    /***********************************************************************************************
-     * 测试 student
-     ***********************************************************************************************/
-//    public void onInsert(View v) {
-//        StudentBean student = new StudentBean();
-//        student.setId(1);
-//        student.setAge(18);
-//        student.setGender("3");
-//        student.setName("test1");
-//        StudentBeanTable.getInstance().insert(student);
-//    }
-//    
-//    public void onDelete(View v) {
-//
-//    }
-//
-//    public void onUpdate(View v) {
-//
-//    }
-//
-//    public void onQuery(View v) {
-//        List<StudentBean> students = StudentBeanTable.getInstance().queryAll();
-//        log("students size: " + (students != null ? students.size() : 0));
-//        for(StudentBean bean : students) {
-//            log("id: " + bean.getId() + "  name: " + bean.getName() + "  age: " + bean.getAge() + "  gender: " + bean.getGender());  
-//        }
-//    }
-//    
-
 
     private void log(String str) {
         System.out.println("=====================> " + str);

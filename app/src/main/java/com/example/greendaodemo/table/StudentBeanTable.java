@@ -47,9 +47,24 @@ public class StudentBeanTable {
 
     public void insertOrReplace(StudentBean student) {
         studentDao.insertOrReplace(student);
-//        studentDao.insertOrReplaceInTx();
+//        studentDao.insertOrReplaceInTx(); // 多个数据
     }
 
+    public void save(StudentBean student) {
+        studentDao.save(student);
+    }
+
+    public void delete(StudentBean student) {
+        studentDao.delete(student);
+    }
+
+    public void update(StudentBean student) {
+        studentDao.update(student);
+    }
+
+    public List<StudentBean> queryRaw(String where, String... selectionArg) {
+        return studentDao.queryRaw(where, selectionArg);
+    }
 
 //    public StudentBean load(StudentBean student) {
 //        StudentBean students2 = studentDao.load(Void);
@@ -62,17 +77,12 @@ public class StudentBeanTable {
     }
 
 
-    public void update(StudentBean student) {
-           studentDao.update(student);
-    }
+
 
     public void updateInTx(StudentBean student) {
         studentDao.updateInTx(student);
     }
 
-    public void delete(StudentBean student) {
-        studentDao.delete(student);
-    }
 
     
     
