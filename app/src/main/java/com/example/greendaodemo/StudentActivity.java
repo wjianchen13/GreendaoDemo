@@ -8,10 +8,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.greendaodemo.bean.EventBean;
 import com.example.greendaodemo.bean.StudentBean;
+import com.example.greendaodemo.dao.StudentBeanDao;
 import com.example.greendaodemo.manager.DaoManager;
 import com.example.greendaodemo.manager.EventUtils;
 import com.example.greendaodemo.manager.StudentUtils;
 import com.example.greendaodemo.table.EventBeanTable;
+
+import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,6 +22,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -119,6 +123,52 @@ public class StudentActivity extends AppCompatActivity {
             log("index " + i + ": " + beans.get(i).toString());
         }
     }
+
+    /**
+     * queryBuilder查询数据
+     * @param v
+     */
+    public void onTest10(View v) {
+        QueryBuilder qb = StudentUtils.queryBuilder();
+        List<StudentBean> beans = qb.list();
+        for (int i = 0; i < beans.size(); i ++) {
+            log("index " + i + ": " + beans.get(i).toString());
+        }
+    }
+
+    /**
+     * 批量插入数据
+     * @param v
+     */
+    public void onTest11(View v) {
+        List<StudentBean> beans = new ArrayList<>();
+        for (int i = 0; i < 10; i ++) {
+            StudentBean bean = new StudentBean((long) i, i * 10, "test" + (i % 3), 20 + i, i % 2 == 0 ? "男" : "女");
+            beans.add(bean);
+        }
+        StudentUtils.insertOrReplaceInTx(beans);
+    }
+
+    /**
+     * 查询Name为 test1 的所有Student,按照_id降序排序
+     * @param v
+     */
+    public void onTest12(View v) {
+        QueryBuilder qb = StudentUtils.queryBuilder();
+        QueryBuilder<StudentBean> studentQueryBuilder = qb.where(StudentBeanDao.Properties.Name.eq("test1")).orderDesc(StudentBeanDao.Properties._id);
+        List<StudentBean> beans = studentQueryBuilder.list(); //查出当前对应的数据
+        for (int i = 0; i < beans.size(); i ++) {
+            log("index " + i + ": " + beans.get(i).toString());
+        }
+    }
+
+
+
+
+
+
+
+
 
     private void log(String str) {
         System.out.println("=====================> " + str);

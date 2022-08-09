@@ -14,7 +14,7 @@ public class MyDevOpenHelper extends DaoMaster.DevOpenHelper {
 
     @Override
     public void onUpgrade(Database db, int oldVersion, int newVersion) {
-        //super.onUpgrade(db, oldVersion, newVersion);
+//        super.onUpgrade(db, oldVersion, newVersion);
         MigrationHelper.getInstance().migrate(db, StudentBeanDao.class);
     }
 }

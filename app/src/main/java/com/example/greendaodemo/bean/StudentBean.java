@@ -18,13 +18,21 @@ public class StudentBean {
 
     private String gender;
 
-    @Generated(hash = 1049751680)
+    private String height;
+
     public StudentBean(Long _id, long uid, String name, int age, String gender) {
+        this(_id, uid, name, age, gender, "");
+    }
+
+    @Generated(hash = 497910083)
+    public StudentBean(Long _id, long uid, String name, int age, String gender,
+            String height) {
         this._id = _id;
         this.uid = uid;
         this.name = name;
         this.age = age;
         this.gender = gender;
+        this.height = height;
     }
 
     @Generated(hash = 2097171990)
@@ -80,5 +88,13 @@ public class StudentBean {
                 ", age=" + age +
                 ", gender='" + gender + '\'' +
                 " }";
+    }
+
+    public String getHeight() {
+        return this.height;
+    }
+
+    public void setHeight(String height) {
+        this.height = height;
     }
 }

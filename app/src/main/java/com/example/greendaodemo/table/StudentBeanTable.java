@@ -4,6 +4,8 @@ import com.example.greendaodemo.bean.StudentBean;
 import com.example.greendaodemo.dao.StudentBeanDao;
 import com.example.greendaodemo.manager.DaoManager;
 
+import org.greenrobot.greendao.query.QueryBuilder;
+
 import java.util.List;
 
 /**
@@ -47,7 +49,6 @@ public class StudentBeanTable {
 
     public void insertOrReplace(StudentBean student) {
         studentDao.insertOrReplace(student);
-//        studentDao.insertOrReplaceInTx(); // 多个数据
     }
 
     public void save(StudentBean student) {
@@ -66,10 +67,13 @@ public class StudentBeanTable {
         return studentDao.queryRaw(where, selectionArg);
     }
 
-//    public StudentBean load(StudentBean student) {
-//        StudentBean students2 = studentDao.load(Void);
-//        return students2;
-//    }
+    public QueryBuilder queryBuilder() {
+        return studentDao.queryBuilder();
+    }
+
+    public void insertOrReplaceInTx(List<StudentBean> students) {
+        studentDao.insertOrReplaceInTx(students);
+    }
     
     public StudentBean query() {
         StudentBean students = studentDao.loadByRowId(0L);

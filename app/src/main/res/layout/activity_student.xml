@@ -87,10 +87,37 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:text="查询数据"
+            android:text="queryRaw查询数据"
             android:gravity="center"
             android:textAllCaps="false"
             android:onClick="onTest9" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="queryBuilder查询数据"
+            android:gravity="center"
+            android:textAllCaps="false"
+            android:onClick="onTest10" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="批量插入数据"
+            android:gravity="center"
+            android:textAllCaps="false"
+            android:onClick="onTest11" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="queryBuilder查询数据"
+            android:gravity="center"
+            android:textAllCaps="false"
+            android:onClick="onTest12" />
 
     </LinearLayout>
 </ScrollView>

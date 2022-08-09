@@ -3,6 +3,8 @@ package com.example.greendaodemo.manager;
 import com.example.greendaodemo.bean.StudentBean;
 import com.example.greendaodemo.table.StudentBeanTable;
 
+import org.greenrobot.greendao.query.QueryBuilder;
+
 import java.util.List;
 
 public class StudentUtils {
@@ -83,5 +85,23 @@ public class StudentUtils {
     public static List<StudentBean> queryRaw(String where, String... selectionArg) {
         return StudentBeanTable.getInstance().queryRaw(where, selectionArg);
     }
+
+    /**
+     * 查询数据
+     */
+    public static QueryBuilder queryBuilder() {
+        return StudentBeanTable.getInstance().queryBuilder();
+    }
+
+    /**
+     * 插入一组数据
+     * @return
+     */
+    public static void insertOrReplaceInTx(List<StudentBean> students) {
+        if(students != null) {
+            StudentBeanTable.getInstance().insertOrReplaceInTx(students);
+        }
+    }
+
 
 }
