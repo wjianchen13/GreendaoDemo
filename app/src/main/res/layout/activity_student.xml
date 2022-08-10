@@ -119,5 +119,51 @@
             android:textAllCaps="false"
             android:onClick="onTest12" />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="查询uid大于5的学生"
+            android:gravity="center"
+            android:textAllCaps="false"
+            android:onClick="onTest13" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="uid大于5小于10，Name值为test0的数据"
+            android:gravity="center"
+            android:textAllCaps="false"
+            android:onClick="onTest14" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="取5条Uid大于2的数据，且偏移2条"
+            android:gravity="center"
+            android:textAllCaps="false"
+            android:onClick="onTest15" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="多次执行查找"
+            android:gravity="center"
+            android:textAllCaps="false"
+            android:onClick="onTest16" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="使用QueryBuilder进行批量删除操作"
+            android:gravity="center"
+            android:textAllCaps="false"
+            android:onClick="onTest17" />
+
+
     </LinearLayout>
 </ScrollView>
