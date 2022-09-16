@@ -24,4 +24,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, EventActivity.class));
     }
 
+    public void onHangup(View v) {
+        startActivity(new Intent(this, HangupActivity.class));
+    }
+
 }
