@@ -28,4 +28,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, HangupActivity.class));
     }
 
+    public void onZip(View v) {
+        startActivity(new Intent(this, ZipActivity.class));
+    }
+
 }
