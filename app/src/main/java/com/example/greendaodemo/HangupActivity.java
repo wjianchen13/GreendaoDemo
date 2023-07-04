@@ -10,6 +10,7 @@ import com.example.greendaodemo.bean.HangupBean;
 import com.example.greendaodemo.manager.EventUtils;
 import com.example.greendaodemo.manager.HangupUtils;
 import com.example.greendaodemo.table.EventBeanTable;
+import com.example.greendaodemo.util.Utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -26,34 +27,50 @@ public class HangupActivity extends AppCompatActivity {
     }
 
     public void onInsert(View v) {
-        long current = System.currentTimeMillis();
-        Date date = new Date(current);
-        log("current: " + current + "  date: " + sdf.format(date));
-        HangupUtils.insertOrReplace(new HangupBean("1", current, sdf.format(date)));
+        HangupUtils.insertOrReplace("123");
     }
 
+    public void onInsert1(View v) {
+        HangupUtils.insertOrReplace("456");
+    }
+
+    public void onInsert2(View v) {
+        HangupUtils.insertOrReplace("789");
+    }
+
+
     public void onDelete(View v) {
-        EventUtils.isUploadEventExcludeDevice("111", "2222", "测试1");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        long current = System.currentTimeMillis();
+        Utils.log("删除时间: " + sdf.format(new Date(current)));
+        HangupUtils.deleteGreaterThan3Min(current);
     }
 
     public void onUpdate(View v) {
-        EventUtils.isUploadEventExcludeDevice("112", "2222", "测试1");
+        long current = System.currentTimeMillis();
+        boolean isGreaterThan3min = HangupUtils.isGreaterThan3min(current, "789");
+        if(isGreaterThan3min) {
+            Utils.log("大于3分钟插入");
+        } else {
+            Utils.log("小于3分钟插入");
+        }
     }
 
     public void onQuery(View v) {
-        EventUtils.isUploadEventExcludeDevice("111", "2223", "测试1");
+
     }
 
     public void onQueryAll(View v) {
-        List<EventBean> events = EventBeanTable.getInstance().queryAll();
-        log("events size: " + (events != null ? events.size() : 0));
-        for(EventBean bean : events) {
-            log("uid: " + bean.getUId() + "  eventId: " + bean.getEventId() + "  imei: " + bean.getImei() + "  eventDesc: " + bean.getEventDesc() + "  time: " + sdf.format(new Date(bean.getCtime())));  
+        List<HangupBean> beans = HangupUtils.queryData();
+        if(beans != null) {
+            Utils.log("查找数据数量: "  + beans.size());
+            if(beans.size() > 0) {
+                for (int i = 0; i < beans.size(); i ++) {
+                    Utils.log("index " + i + ":  " + beans.get(i).toString());
+                }
+            }
         }
     }
     
-    private void log(String str) {
-        System.out.println("=====================> " + str);
-    }
 
 }

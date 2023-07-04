@@ -13,6 +13,7 @@ import com.example.greendaodemo.manager.DaoManager;
 import com.example.greendaodemo.manager.EventUtils;
 import com.example.greendaodemo.manager.StudentUtils;
 import com.example.greendaodemo.table.EventBeanTable;
+import com.example.greendaodemo.util.Utils;
 
 import org.greenrobot.greendao.query.DeleteQuery;
 import org.greenrobot.greendao.query.Query;
@@ -47,9 +48,9 @@ public class StudentActivity extends AppCompatActivity {
         List list = StudentUtils.loadAll();
         if(list != null) {
             if(list.size() == 0)
-                log("数据为空");
+                Utils.log("数据为空");
             for (int i = 0; i < list.size(); i ++) {
-                log("index " + i + ": " + list.get(i).toString());
+                Utils.log("index " + i + ": " + list.get(i).toString());
             }
         }
     }
@@ -123,7 +124,7 @@ public class StudentActivity extends AppCompatActivity {
     public void onTest9(View v) {
         List<StudentBean> beans = StudentUtils.queryRaw("where uid = ?", "1");
         for (int i = 0; i < beans.size(); i ++) {
-            log("index " + i + ": " + beans.get(i).toString());
+            Utils.log("index " + i + ": " + beans.get(i).toString());
         }
     }
 
@@ -135,7 +136,7 @@ public class StudentActivity extends AppCompatActivity {
         QueryBuilder qb = StudentUtils.queryBuilder();
         List<StudentBean> beans = qb.list();
         for (int i = 0; i < beans.size(); i ++) {
-            log("index " + i + ": " + beans.get(i).toString());
+            Utils.log("index " + i + ": " + beans.get(i).toString());
         }
     }
 
@@ -161,7 +162,7 @@ public class StudentActivity extends AppCompatActivity {
         QueryBuilder<StudentBean> studentQueryBuilder = qb.where(StudentBeanDao.Properties.Name.eq("test1")).orderDesc(StudentBeanDao.Properties._id);
         List<StudentBean> beans = studentQueryBuilder.list(); //查出当前对应的数据
         for (int i = 0; i < beans.size(); i ++) {
-            log("index " + i + ": " + beans.get(i).toString());
+            Utils.log("index " + i + ": " + beans.get(i).toString());
         }
     }
 
@@ -176,7 +177,7 @@ public class StudentActivity extends AppCompatActivity {
         ).build();
         List<StudentBean> beans = query.list();
         for (int i = 0; i < beans.size(); i ++) {
-            log("index " + i + ": " + beans.get(i).toString());
+            Utils.log("index " + i + ": " + beans.get(i).toString());
         }
     }
 
@@ -191,7 +192,7 @@ public class StudentActivity extends AppCompatActivity {
                 qb.and(StudentBeanDao.Properties.Uid.gt(5),
                         StudentBeanDao.Properties.Uid.le(50))).list();
         for (int i = 0; i < beans.size(); i ++) {
-            log("index " + i + ": " + beans.get(i).toString());
+            Utils.log("index " + i + ": " + beans.get(i).toString());
         }
     }
 
@@ -203,7 +204,7 @@ public class StudentActivity extends AppCompatActivity {
         QueryBuilder qb = StudentUtils.queryBuilder();
         List<StudentBean> beans = qb.where(StudentBeanDao.Properties.Uid.gt(2)).limit(5).offset(2).list();
         for (int i = 0; i < beans.size(); i ++) {
-            log("index " + i + ": " + beans.get(i).toString());
+            Utils.log("index " + i + ": " + beans.get(i).toString());
         }
     }
 
@@ -218,7 +219,7 @@ public class StudentActivity extends AppCompatActivity {
         Query<StudentBean> query = qb.where(StudentBeanDao.Properties.Uid.gt(0)).limit(5).offset(2).build();
         List<StudentBean> list = query.list();
         for (int i = 0; i < list.size(); i ++) {
-            log("index " + i + ": " + list.get(i).toString());
+            Utils.log("index " + i + ": " + list.get(i).toString());
         }
         //通过SetParameter来修改上面的查询条件，比如我们将上面条件修改取5条Id值大于2，往后偏移两位的数据，方法如下！
         // setParameter 第一个表示条件的索引，在上边的条件是uid大于0，现在改成2，这个索引不能设置超过本来的数值，
@@ -226,7 +227,7 @@ public class StudentActivity extends AppCompatActivity {
         query.setParameter(0,2);
         List<StudentBean> list1 = query.list();
         for (int i = 0; i < list1.size(); i ++) {
-            log("index " + i + ": " + list1.get(i).toString());
+            Utils.log("index " + i + ": " + list1.get(i).toString());
         }
     }
 
@@ -240,10 +241,6 @@ public class StudentActivity extends AppCompatActivity {
         QueryBuilder<StudentBean> where = qb.where(StudentBeanDao.Properties.Uid.gt(5));
         DeleteQuery<StudentBean> deleteQuery = where.buildDelete();
         deleteQuery.executeDeleteWithoutDetachingEntities();
-    }
-
-    private void log(String str) {
-        System.out.println("=====================> " + str);
     }
 
     /***********************************************************************************************

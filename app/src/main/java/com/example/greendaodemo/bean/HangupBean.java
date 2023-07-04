@@ -111,5 +111,14 @@ public class HangupBean {
         this.daoSession = daoSession;
         myDao = daoSession != null ? daoSession.getHangupBeanDao() : null;
     }
+
+    @Override
+    public String toString() {
+        return "StudentBean{ " +
+                "anchorId=" + anchorId +
+                ", ctime=" + ctime +
+                ", realTime='" + realTime  +
+                " }";
+    }
     
 }

@@ -80,14 +80,4 @@ public class StudentBeanTable {
         return students;
     }
 
-
-
-
-    public void updateInTx(StudentBean student) {
-        studentDao.updateInTx(student);
-    }
-
-
-    
-    
 }

@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.greendaodemo.bean.EventBean;
 import com.example.greendaodemo.manager.EventUtils;
 import com.example.greendaodemo.table.EventBeanTable;
+import com.example.greendaodemo.util.Utils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -47,9 +48,9 @@ public class EventActivity extends AppCompatActivity {
 
     public void onQueryAll(View v) {
         List<EventBean> events = EventBeanTable.getInstance().queryAll();
-        log("events size: " + (events != null ? events.size() : 0));
+        Utils.log("events size: " + (events != null ? events.size() : 0));
         for(EventBean bean : events) {
-            log("uid: " + bean.getUId() + "  eventId: " + bean.getEventId() + "  imei: " + bean.getImei() + "  eventDesc: " + bean.getEventDesc() + "  time: " + sdf.format(new Date(bean.getCtime())));  
+            Utils.log("uid: " + bean.getUId() + "  eventId: " + bean.getEventId() + "  imei: " + bean.getImei() + "  eventDesc: " + bean.getEventDesc() + "  time: " + sdf.format(new Date(bean.getCtime())));
         }
     }
     
@@ -75,17 +76,12 @@ public class EventActivity extends AppCompatActivity {
 //
 //    public void onQuery(View v) {
 //        List<StudentBean> students = StudentBeanTable.getInstance().queryAll();
-//        log("students size: " + (students != null ? students.size() : 0));
+//        Utils.log("students size: " + (students != null ? students.size() : 0));
 //        for(StudentBean bean : students) {
-//            log("id: " + bean.getId() + "  name: " + bean.getName() + "  age: " + bean.getAge() + "  gender: " + bean.getGender());  
+//            Utils.log("id: " + bean.getId() + "  name: " + bean.getName() + "  age: " + bean.getAge() + "  gender: " + bean.getGender());  
 //        }
 //    }
-//    
-
-
-    private void log(String str) {
-        System.out.println("=====================> " + str);
-    }
+//
 
     /***********************************************************************************************
      * 拷贝数据库到外置sd卡下

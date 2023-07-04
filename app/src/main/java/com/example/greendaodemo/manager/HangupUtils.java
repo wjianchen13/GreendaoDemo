@@ -1,57 +1,52 @@
 package com.example.greendaodemo.manager;
 
-import com.example.greendaodemo.bean.EventBean;
 import com.example.greendaodemo.bean.HangupBean;
-import com.example.greendaodemo.table.EventBeanTable;
 import com.example.greendaodemo.table.HangupBeanTable;
+import com.example.greendaodemo.util.Utils;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 public class HangupUtils {
 
     /**
-     * insertOrReplace 数据存在则替换，数据不存在则插入
-     * @param bean
+     * 挂断电话，插入挂断信息：主播id，挂断的当前时间，如果之前已经存在了挂断时间在3分钟内，就不会再插入
+     * @param anchorId
      */
-    public static void insertOrReplace(HangupBean bean) {
-        if(bean != null) {
-            HangupBeanTable.getInstance().insertOrReplace(bean);
+    public static void insertOrReplace(String anchorId) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        long current = System.currentTimeMillis();
+        Date date = new Date(current);
+        Utils.log("current: " + current + "  date: " + sdf.format(date));
+        HangupBeanTable.getInstance().deleteGreaterThan3Min(current);
+        if(!HangupBeanTable.getInstance().isAnchorExit(anchorId)) { // 上面已经删除了大于3分钟的，如果还有存在的说明是小于3分钟的
+            HangupBeanTable.getInstance().insertOrReplace(new HangupBean(anchorId, current, sdf.format(date)));
         }
-    }
-
-
-    /**
-     * 查询数据库数据，排除UID一样的情况
-     * 如果不存在UID，则插入，返回true
-     * @return
-     */
-    public static boolean isUploadEventExcludeUid(int uid, String eventId, String desc) {
-        if(!isExit(uid, eventId)) {
-            EventBean bean = new EventBean(uid, eventId, "", System.currentTimeMillis(), desc);
-            EventBeanTable.getInstance().save(bean);
-            return true;
-        }
-        return false;
     }
 
     /**
-     * 查询数据库数据，排除imei一样的情况
-     * 如果不存在imei，则插入，返回true
-     * @return
+     * 判断当前主播间隔之间挂断是否大于3分钟
      */
-    public static boolean isUploadEventExcludeDevice(String imei, String eventId, String desc) {
-        if(!isExit(imei, eventId)) {
-            EventBean bean = new EventBean(0, eventId, imei, System.currentTimeMillis(), desc);
-            EventBeanTable.getInstance().save(bean);
-            return true;
-        }
-        return false;
-    }
-    
-    public static boolean isExit(int uid, String eventId) {
-        return EventBeanTable.getInstance().isExit(uid, eventId);   
+    public static boolean isGreaterThan3min(long current, String anchorId) {
+        return HangupBeanTable.getInstance().isGreaterThan3min(current, anchorId);
     }
 
-    public static boolean isExit(String imei, String eventId) {
-        return EventBeanTable.getInstance().isExit(imei, eventId);
+    /**
+     * 查找全部数据
+     * @return
+     */
+    public static List<HangupBean> queryData() {
+        return HangupBeanTable.getInstance().queryAll();
     }
-    
+
+    /**
+     * 删除时间超过3分钟以上的数据
+     * @param time
+     */
+    public static void deleteGreaterThan3Min(long time) {
+        HangupBeanTable.getInstance().deleteGreaterThan3Min(time);
+    }
+
+
 }

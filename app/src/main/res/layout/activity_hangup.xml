@@ -20,24 +20,50 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
+        android:id="@+id/btn_insert1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="insert1"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:onClick="onInsert1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_insert"/>
+
+    <Button
+        android:id="@+id/btn_insert2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="insert2"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:onClick="onInsert2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_insert1"/>
+
+    <Button
         android:id="@+id/btn_delete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="delete"
+        android:text="删除3分钟之前插入的数据"
         android:gravity="center"
         android:textAllCaps="false"
         android:onClick="onDelete"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_insert"/>
+        app:layout_constraintTop_toBottomOf="@+id/btn_insert2"/>
 
     <Button
         android:id="@+id/btn_update"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="update"
+        android:text="判断3分钟内否插入过数据"
         android:gravity="center"
         android:textAllCaps="false"
         android:onClick="onUpdate"
