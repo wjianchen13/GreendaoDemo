@@ -9,30 +9,27 @@ public class StudentBean {
 
     @Id
     Long _id;
-
     private long uid;
-
     private String name;
-
     private int age;
-
     private String gender;
-
     private String height;
+    private String test;
 
     public StudentBean(Long _id, long uid, String name, int age, String gender) {
-        this(_id, uid, name, age, gender, "");
+        this(_id, uid, name, age, gender, "", "");
     }
 
-    @Generated(hash = 497910083)
+    @Generated(hash = 292478697)
     public StudentBean(Long _id, long uid, String name, int age, String gender,
-            String height) {
+            String height, String test) {
         this._id = _id;
         this.uid = uid;
         this.name = name;
         this.age = age;
         this.gender = gender;
         this.height = height;
+        this.test = test;
     }
 
     @Generated(hash = 2097171990)
@@ -96,5 +93,13 @@ public class StudentBean {
 
     public void setHeight(String height) {
         this.height = height;
+    }
+
+    public String getTest() {
+        return this.test;
+    }
+
+    public void setTest(String test) {
+        this.test = test;
     }
 }

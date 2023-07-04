@@ -30,6 +30,7 @@ public class StudentBeanDao extends AbstractDao<StudentBean, Long> {
         public final static Property Age = new Property(3, int.class, "age", false, "AGE");
         public final static Property Gender = new Property(4, String.class, "gender", false, "GENDER");
         public final static Property Height = new Property(5, String.class, "height", false, "HEIGHT");
+        public final static Property Test = new Property(6, String.class, "test", false, "TEST");
     }
 
 
@@ -50,7 +51,8 @@ public class StudentBeanDao extends AbstractDao<StudentBean, Long> {
                 "\"NAME\" TEXT," + // 2: name
                 "\"AGE\" INTEGER NOT NULL ," + // 3: age
                 "\"GENDER\" TEXT," + // 4: gender
-                "\"HEIGHT\" TEXT);"); // 5: height
+                "\"HEIGHT\" TEXT," + // 5: height
+                "\"TEST\" TEXT);"); // 6: test
     }
 
     /** Drops the underlying database table. */
@@ -84,6 +86,11 @@ public class StudentBeanDao extends AbstractDao<StudentBean, Long> {
         if (height != null) {
             stmt.bindString(6, height);
         }
+ 
+        String test = entity.getTest();
+        if (test != null) {
+            stmt.bindString(7, test);
+        }
     }
 
     @Override
@@ -111,6 +118,11 @@ public class StudentBeanDao extends AbstractDao<StudentBean, Long> {
         if (height != null) {
             stmt.bindString(6, height);
         }
+ 
+        String test = entity.getTest();
+        if (test != null) {
+            stmt.bindString(7, test);
+        }
     }
 
     @Override
@@ -126,7 +138,8 @@ public class StudentBeanDao extends AbstractDao<StudentBean, Long> {
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // name
             cursor.getInt(offset + 3), // age
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // gender
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5) // height
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // height
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6) // test
         );
         return entity;
     }
@@ -139,6 +152,7 @@ public class StudentBeanDao extends AbstractDao<StudentBean, Long> {
         entity.setAge(cursor.getInt(offset + 3));
         entity.setGender(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setHeight(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setTest(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
      }
     
     @Override
