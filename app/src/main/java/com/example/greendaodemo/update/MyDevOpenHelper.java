@@ -2,8 +2,12 @@ package com.example.greendaodemo.update;
 
 import android.content.Context;
 
+import com.example.greendaodemo.dao.Card1Dao;
+import com.example.greendaodemo.dao.Card2Dao;
 import com.example.greendaodemo.dao.DaoMaster;
 import com.example.greendaodemo.dao.StudentBeanDao;
+import com.example.greendaodemo.dao.User1Dao;
+import com.example.greendaodemo.dao.User2Dao;
 
 import org.greenrobot.greendao.database.Database;
 
@@ -30,6 +34,6 @@ public class MyDevOpenHelper extends DaoMaster.DevOpenHelper {
             public void onDropAllTables(Database db, boolean ifExists) {
                 DaoMaster.dropAllTables(db, ifExists);
             }
-        },  StudentBeanDao.class);
+        },  StudentBeanDao.class, Card1Dao.class, Card2Dao.class, User1Dao.class, User2Dao.class);
     }
 }

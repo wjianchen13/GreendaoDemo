@@ -24,6 +24,8 @@
         <activity android:name=".StudentActivity" />
         <activity android:name=".HangupActivity" />
         <activity android:name=".ZipActivity" />
+        <activity android:name=".relate.RelateActivity" />
+
 
     </application>
 

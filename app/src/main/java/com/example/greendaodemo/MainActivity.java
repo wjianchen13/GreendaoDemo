@@ -6,7 +6,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.text.SimpleDateFormat;
+import com.example.greendaodemo.relate.RelateActivity;
 
 public class MainActivity extends AppCompatActivity {
     
@@ -30,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void onZip(View v) {
         startActivity(new Intent(this, ZipActivity.class));
+    }
+
+    public void onTest1(View v) {
+        startActivity(new Intent(this, RelateActivity.class));
     }
 
 }

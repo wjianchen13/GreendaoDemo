@@ -7,68 +7,82 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/btn_student"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Student"
-        android:gravity="center"
-        android:textAllCaps="false"
-        android:onClick="onStudent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" 
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <Button
-        android:id="@+id/btn_event"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Event"
-        android:gravity="center"
-        android:textAllCaps="false"
-        android:onClick="onEvent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_student"/>
-
-    <Button
-        android:id="@+id/btn_hangup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="挂断时间统计"
-        android:gravity="center"
-        android:textAllCaps="false"
-        android:onClick="onHangup"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_event"/>
-
-    <Button
-        android:id="@+id/btn_zip"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="模拟Zip下载信息数据"
-        android:gravity="center"
-        android:textAllCaps="false"
-        android:onClick="onZip"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_hangup"/>
-
-    <Button
         android:id="@+id/btn_test1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="一对一关联"
+        android:text="单向关联插入数据"
         android:gravity="center"
         android:textAllCaps="false"
         android:onClick="onTest1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_hangup"/>
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+        android:id="@+id/btn_test2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="单向关联查询数据"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:onClick="onTest2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_test1"/>
+
+    <Button
+        android:id="@+id/btn_test3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="双向关联插入数据"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:onClick="onTest3"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_test2"/>
+
+    <Button
+        android:id="@+id/btn_test4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="双向关联查询数据"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:onClick="onTest4"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_test3"/>
+
+    <Button
+        android:id="@+id/btn_test5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="一对多关联插入数据"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:onClick="onTest5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_test4"/>
+
+    <Button
+        android:id="@+id/btn_test6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="一对多关联查询数据"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:onClick="onTest6"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_test5"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
