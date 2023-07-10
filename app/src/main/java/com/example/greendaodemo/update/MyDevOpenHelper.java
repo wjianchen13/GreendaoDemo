@@ -8,6 +8,7 @@ import com.example.greendaodemo.dao.DaoMaster;
 import com.example.greendaodemo.dao.StudentBeanDao;
 import com.example.greendaodemo.dao.User1Dao;
 import com.example.greendaodemo.dao.User2Dao;
+import com.example.greendaodemo.dao.UserPhotoDao;
 
 import org.greenrobot.greendao.database.Database;
 
@@ -34,6 +35,6 @@ public class MyDevOpenHelper extends DaoMaster.DevOpenHelper {
             public void onDropAllTables(Database db, boolean ifExists) {
                 DaoMaster.dropAllTables(db, ifExists);
             }
-        },  StudentBeanDao.class, Card1Dao.class, Card2Dao.class, User1Dao.class, User2Dao.class);
+        },  StudentBeanDao.class, Card1Dao.class, Card2Dao.class, User1Dao.class, User2Dao.class, UserPhotoDao.class);
     }
 }

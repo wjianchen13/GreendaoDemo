@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.greendaodemo.relate.RelateActivity;
+import com.example.greendaodemo.test.TestActivity;
 
 public class MainActivity extends AppCompatActivity {
     
@@ -35,5 +36,10 @@ public class MainActivity extends AppCompatActivity {
     public void onTest1(View v) {
         startActivity(new Intent(this, RelateActivity.class));
     }
+
+    public void onTest2(View v) {
+        startActivity(new Intent(this, TestActivity.class));
+    }
+
 
 }
