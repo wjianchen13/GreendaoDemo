@@ -26,6 +26,7 @@ public class DaoMaster extends AbstractDaoMaster {
         EventBeanDao.createTable(db, ifNotExists);
         HangupBeanDao.createTable(db, ifNotExists);
         OrdersDao.createTable(db, ifNotExists);
+        PayBeanDao.createTable(db, ifNotExists);
         RemoteZipBeanDao.createTable(db, ifNotExists);
         StudentBeanDao.createTable(db, ifNotExists);
         User1Dao.createTable(db, ifNotExists);
@@ -42,6 +43,7 @@ public class DaoMaster extends AbstractDaoMaster {
         EventBeanDao.dropTable(db, ifExists);
         HangupBeanDao.dropTable(db, ifExists);
         OrdersDao.dropTable(db, ifExists);
+        PayBeanDao.dropTable(db, ifExists);
         RemoteZipBeanDao.dropTable(db, ifExists);
         StudentBeanDao.dropTable(db, ifExists);
         User1Dao.dropTable(db, ifExists);
@@ -72,6 +74,7 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(EventBeanDao.class);
         registerDaoClass(HangupBeanDao.class);
         registerDaoClass(OrdersDao.class);
+        registerDaoClass(PayBeanDao.class);
         registerDaoClass(RemoteZipBeanDao.class);
         registerDaoClass(StudentBeanDao.class);
         registerDaoClass(User1Dao.class);

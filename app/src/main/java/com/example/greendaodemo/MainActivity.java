@@ -41,5 +41,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, TestActivity.class));
     }
 
+    public void onPay(View v) {
+        startActivity(new Intent(this, PayActivity.class));
+    }
+
 
 }

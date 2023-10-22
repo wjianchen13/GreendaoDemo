@@ -13,6 +13,7 @@ import com.example.greendaodemo.bean.Card2;
 import com.example.greendaodemo.bean.EventBean;
 import com.example.greendaodemo.bean.HangupBean;
 import com.example.greendaodemo.bean.Orders;
+import com.example.greendaodemo.bean.PayBean;
 import com.example.greendaodemo.bean.RemoteZipBean;
 import com.example.greendaodemo.bean.StudentBean;
 import com.example.greendaodemo.bean.User1;
@@ -26,6 +27,7 @@ import com.example.greendaodemo.dao.Card2Dao;
 import com.example.greendaodemo.dao.EventBeanDao;
 import com.example.greendaodemo.dao.HangupBeanDao;
 import com.example.greendaodemo.dao.OrdersDao;
+import com.example.greendaodemo.dao.PayBeanDao;
 import com.example.greendaodemo.dao.RemoteZipBeanDao;
 import com.example.greendaodemo.dao.StudentBeanDao;
 import com.example.greendaodemo.dao.User1Dao;
@@ -48,6 +50,7 @@ public class DaoSession extends AbstractDaoSession {
     private final DaoConfig eventBeanDaoConfig;
     private final DaoConfig hangupBeanDaoConfig;
     private final DaoConfig ordersDaoConfig;
+    private final DaoConfig payBeanDaoConfig;
     private final DaoConfig remoteZipBeanDaoConfig;
     private final DaoConfig studentBeanDaoConfig;
     private final DaoConfig user1DaoConfig;
@@ -61,6 +64,7 @@ public class DaoSession extends AbstractDaoSession {
     private final EventBeanDao eventBeanDao;
     private final HangupBeanDao hangupBeanDao;
     private final OrdersDao ordersDao;
+    private final PayBeanDao payBeanDao;
     private final RemoteZipBeanDao remoteZipBeanDao;
     private final StudentBeanDao studentBeanDao;
     private final User1Dao user1Dao;
@@ -88,6 +92,9 @@ public class DaoSession extends AbstractDaoSession {
         ordersDaoConfig = daoConfigMap.get(OrdersDao.class).clone();
         ordersDaoConfig.initIdentityScope(type);
 
+        payBeanDaoConfig = daoConfigMap.get(PayBeanDao.class).clone();
+        payBeanDaoConfig.initIdentityScope(type);
+
         remoteZipBeanDaoConfig = daoConfigMap.get(RemoteZipBeanDao.class).clone();
         remoteZipBeanDaoConfig.initIdentityScope(type);
 
@@ -114,6 +121,7 @@ public class DaoSession extends AbstractDaoSession {
         eventBeanDao = new EventBeanDao(eventBeanDaoConfig, this);
         hangupBeanDao = new HangupBeanDao(hangupBeanDaoConfig, this);
         ordersDao = new OrdersDao(ordersDaoConfig, this);
+        payBeanDao = new PayBeanDao(payBeanDaoConfig, this);
         remoteZipBeanDao = new RemoteZipBeanDao(remoteZipBeanDaoConfig, this);
         studentBeanDao = new StudentBeanDao(studentBeanDaoConfig, this);
         user1Dao = new User1Dao(user1DaoConfig, this);
@@ -127,6 +135,7 @@ public class DaoSession extends AbstractDaoSession {
         registerDao(EventBean.class, eventBeanDao);
         registerDao(HangupBean.class, hangupBeanDao);
         registerDao(Orders.class, ordersDao);
+        registerDao(PayBean.class, payBeanDao);
         registerDao(RemoteZipBean.class, remoteZipBeanDao);
         registerDao(StudentBean.class, studentBeanDao);
         registerDao(User1.class, user1Dao);
@@ -142,6 +151,7 @@ public class DaoSession extends AbstractDaoSession {
         eventBeanDaoConfig.clearIdentityScope();
         hangupBeanDaoConfig.clearIdentityScope();
         ordersDaoConfig.clearIdentityScope();
+        payBeanDaoConfig.clearIdentityScope();
         remoteZipBeanDaoConfig.clearIdentityScope();
         studentBeanDaoConfig.clearIdentityScope();
         user1DaoConfig.clearIdentityScope();
@@ -169,6 +179,10 @@ public class DaoSession extends AbstractDaoSession {
 
     public OrdersDao getOrdersDao() {
         return ordersDao;
+    }
+
+    public PayBeanDao getPayBeanDao() {
+        return payBeanDao;
     }
 
     public RemoteZipBeanDao getRemoteZipBeanDao() {

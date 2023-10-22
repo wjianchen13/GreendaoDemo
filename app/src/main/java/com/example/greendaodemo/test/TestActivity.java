@@ -89,7 +89,7 @@ public class TestActivity extends AppCompatActivity {
       */
     public void onTest2(View v) {
         List<UserPhoto> photoList;
-        UserInfo user1 = userInfoDao.queryBuilder().where(UserInfoDao.Properties.Name.eq("孙悟空")).build().unique();
+        UserInfo user1 = userInfoDao.queryBuilder().where(UserInfoDao.Properties.Name.eq("猪八戒")).build().unique();
 
         //直接通过User对象的getOrders()方法获得此用户的所有订单
         photoList = user1.getVideos();
